@@ -86,6 +86,10 @@ namespace KaryaSiddhi.Controllers
                 return NotFound();
             }
 
+            if(existingTask.Status == true && task.Status != true)
+            {
+                return BadRequest("Cannot change status from Completed to Pending.");
+            }
             existingTask.Status = task.Status;
 
             await _context.SaveChangesAsync();
