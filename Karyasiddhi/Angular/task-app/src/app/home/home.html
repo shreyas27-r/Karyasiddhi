@@ -1,0 +1,64 @@
+<div class="center-content">
+    <h3>{{ currentDate }}</h3>
+    <h1>{{ greeting }}, Shreyas</h1>
+
+    <div class="top-row">
+<div class="dropdown" (click)="toggleDropdown(); $event.stopPropagation()">
+        {{ selectedFilter }}
+    <i class="bi bi-caret-down-fill"></i>
+ 
+<ul 
+  class="dropdown-menu"
+  [style.display]="isDropdownOpen ? 'block' : 'none'"
+  (click)="$event.stopPropagation()"
+>  <li (click)="selectFilter('Today')">Today</li>
+  <li (click)="selectFilter('This Week')">This Week</li>
+  <li (click)="selectFilter('This Month')">This Month</li>
+  <li (click)="selectFilter('Last Week')">Last Week</li>
+</ul>
+    
+</div>
+        <div class="stat">
+            <i class="bi bi-check-circle"></i>
+            <span>Tasks completed: {{compCount$ | async}}</span>
+        </div>
+        <div class="stat">
+            <i class="bi bi-list"></i>
+            <span class="task-count">Tasks assigned: {{ taskCount$ | async }}</span>
+        </div>
+    </div>
+
+    <!-- My Priorities row inside main flow -->
+    <div class="priorities-row">
+        <span><b>My Priorities</b></span>
+        <button class="btn btn-success rounded-circle add-btn" (click)="showForm = !showForm"
+            [routerLink]="['/add-task']">
+
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+    <br>
+    <!-- Tasks Display -->
+@let tasks = (filteredTasks$ | async);
+
+@if (tasks && tasks.length > 0) {
+
+  <div class="task-container">
+    <div class="task-header">
+      <span>Title</span>
+      <span>Description</span>
+      <span>Priority</span>
+      <span>Due Date</span>
+    </div>
+
+    @for (task of tasks; track task.id) {
+      <div class="task-row">
+        <span>{{ task.title }}</span>
+        <span>{{ task.description }}</span>
+        <span>{{ taskService.getPriorityLabel(task.priority) }}</span>
+        <span>{{ task.dueDate }}</span>
+      </div>
+    }
+  </div>
+}
+

@@ -1,0 +1,151 @@
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 60px); 
+  text-align: center;
+  overflow: visible;
+}
+
+.week-dropdown select {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 400;   
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.task-count {
+  font-weight: normal; 
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 2px;              
+  font-size: 16px;
+  line-height: 1;       
+}
+
+.stat i {
+  font-size: 16px;       
+  line-height: 1;
+  display: inline-flex;  
+  align-items: center;
+  justify-content: center;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  margin-top: 20px;
+  position: relative;   /* 🔥 ADD THIS */
+}
+
+/* Green round plus button */
+.add-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  background-color: #528f61;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+}
+
+.add-btn:hover {
+  background-color: #3e694b;
+}
+
+
+.priorities-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  align-self: flex-start;  /* key part: overrides parent's center alignment */
+  margin-top: 100px;        /* distance from top-row */
+  margin-left: 30px;       /* distance from left edge */
+}
+
+.drop{
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.task-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each row */
+.task-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 0.5fr; /* adjust widths */
+  padding: 10px 5px;
+  align-items: center;
+   background-color: #f9f9f9;
+  border-radius: 6px;
+}
+
+/* Header row */
+.task-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 0.5fr;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+/* Dropdown icon */
+.dropdown i {
+  font-size: 12px;
+}
+ 
+/* Dropdown menu */
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  z-index: 1000;   /* 🔥 VERY IMPORTANT */
+
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+
+  list-style: none;
+  padding: 5px 0;
+  width: 130px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+ 
+.dropdown-menu {
+  display: none;   /* default hidden */
+}
+ 
+.dropdown-menu li:hover {
+  background: #f2f2f2;
+}

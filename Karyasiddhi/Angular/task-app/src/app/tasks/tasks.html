@@ -1,0 +1,82 @@
+<div class="center-content">
+<div class="head">
+  <div class="add">
+  <h3>My Tasks</h3>
+  <button class="btn btn-success rounded-circle add-btn" (click)="showForm = !showForm"
+   [routerLink]="['/add-task']">
+            <i class="bi bi-plus"></i>
+  </button>
+</div>
+
+  <div class="controls">
+    <!-- Status Filter -->
+    <div class="filter-group">
+      <label for="statusFilter">Status:</label>
+      <select id="statusFilter" (change)="onFilterChange($event, 'status')">
+        <option value="">All</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+      </select>
+    </div>
+
+    <!-- Priority Filter -->
+    <div class="filter-group">
+      <label for="priorityFilter">Priority:</label>
+      <select id="priorityFilter" (change)="onFilterChange($event, 'priority')">
+        <option value="">All</option>
+        <option value="1">High</option>
+        <option value="2">Medium</option>
+        <option value="3">Low</option>
+      </select>
+    </div>
+
+    <!-- Sort -->
+    <div class="filter-group">
+      <label for="sort">Sort by Due Date:</label>
+      <select id="sort" (change)="onSortChange($event)">
+        <option value="">None</option>
+        <option value="near">Near</option>
+        <option value="far">Far</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Tasks Display -->
+@let tasks = (tasks$ | async);
+
+@if (tasks && tasks.length > 0) {
+
+  <div class="task-container">
+    <div class="task-header">
+      <span>Title</span>
+      <span>Description</span>
+      <span>Priority</span>
+      <span>Due Date</span>
+      <span>Status</span>
+    </div>
+
+    @for (task of tasks; track task.id) {
+      <div class="task-row">
+        <span>{{ task.title }}</span>
+        <span>{{ task.description }}</span>
+        <span>{{ taskService.getPriorityLabel(task.priority) }}</span>
+        <span>{{ task.dueDate }}</span>
+
+        <button
+          class="status-btn"
+          [disabled]="task.status"
+          [ngClass]="task.status ? 'completed-btn' : 'pending-btn'"
+          (click)="markCompleted(task)">
+          {{ task.status ? 'Completed' : 'Pending' }}
+        </button>
+      </div>
+    }
+
+  </div>
+
+} @else {
+  <div>No tasks available</div>
+}
+
+   

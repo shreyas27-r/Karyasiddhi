@@ -1,0 +1,39 @@
+/* Header container */
+header {
+  position: fixed;       /* keep it always on top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1100;
+  background-color: #2c3e50; /* Bootstrap dark */
+}
+
+/* Flex container inside header */
+header .d-flex {
+  height: 100%;
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* Hamburger button */
+.navbar-toggler {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Optional hover effect */
+.navbar-toggler:hover {
+  opacity: 0.8;
+}
+
+/* Brand title */
+header h1 {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  color: #fff;
+}

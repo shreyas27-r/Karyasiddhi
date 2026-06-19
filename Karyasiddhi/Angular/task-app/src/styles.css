@@ -1,0 +1,165 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #212529; /* dark */
+  z-index: 1100;
+}
+
+header .d-flex {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+header h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+}
+
+/* Hamburger */
+.navbar-toggler {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.navbar-toggler:hover {
+  opacity: 0.8;
+}
+
+/* ================= SIDEBAR ================= */
+.icon-sidebar {
+  position: fixed;
+  top: 60px; /* below header */
+  left: 0;
+  height: calc(100vh - 60px);
+  width: 60px;
+  background-color: #2c3e50;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* Expanded sidebar */
+.icon-sidebar.open {
+  width: 180px;
+}
+
+/* Sidebar list */
+.icon-sidebar ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.icon-sidebar li {
+  margin: 20px 0;
+}
+
+/* Links */
+.icon-sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.icon-sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Hide text when collapsed */
+.icon-sidebar:not(.open) span {
+  display: none;
+}
+
+/* Optional: push last item to bottom */
+.icon-sidebar .bottom {
+  position: absolute;
+  bottom: 20px;
+}
+
+/* ================= MAIN CONTENT ================= */
+main {
+  margin-left: 60px;  /* collapsed sidebar */
+  margin-top: 60px;  /* header height */
+  padding: 10px;
+  transition: margin-left 0.3s ease;
+}
+
+/* When sidebar expanded */
+main.expanded {
+  margin-left: 180px;
+}
+
+/* ================= NAV (if used somewhere else) ================= */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+
+  /* Sidebar overlay mode on small screens */
+  .icon-sidebar {
+    width: 60px;
+  }
+
+  .icon-sidebar.open {
+    width: 150px;
+  }
+
+  main {
+    margin-left: 60px;
+  }
+
+  main.expanded {
+    margin-left: 150px;
+  }
+
+  /* Optional nav dropdown */
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #34495e;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+}

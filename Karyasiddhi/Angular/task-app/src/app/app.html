@@ -1,0 +1,9 @@
+<app-header (toggleMenu)="toggleMenu()"></app-header>
+
+<app-icon-sidebar [isOpen]="isMenuOpen"></app-icon-sidebar>
+
+<main [class.expanded]="isMenuOpen">
+  <router-outlet></router-outlet>
+</main>
+
+<app-footer></app-footer>

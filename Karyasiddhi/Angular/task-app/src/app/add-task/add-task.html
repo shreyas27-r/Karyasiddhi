@@ -1,0 +1,53 @@
+    <!-- Overlay + Modal -->
+<div class="modal-overlay">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <h3>Add New Task</h3>
+<div class="form-field">
+
+    <label for="titleInput">
+      Title <span class="required">&#42;</span>
+    </label>
+    <input type="text" #titleInput (input)="formChanged = !formChanged" />
+
+    <label for="descInput">Description</label>
+    <textarea  #descInput></textarea>
+
+    <label for="priorityInput">
+      Priority <span class="required">&#42;</span>
+    </label>
+
+ <select #priorityInput>
+  <option value="">Select Option</option>
+  <option *ngFor="let p of priorityOptions" [value]="p.id">
+    {{ p.name }}
+  </option>
+</select>
+
+  <label>
+    Due Date <span class="required">&#42;</span>
+  </label>
+
+  <input 
+    type="date" 
+    #dueDateInput
+    (change)="formatDate(dueDateInput.value)"
+    (input)="formChanged = !formChanged"
+  />
+</div>
+
+    <div class="modal-buttons">
+      <button 
+          class="add-task-btn"
+          [disabled]="!isFormValid(titleInput.value, priorityInput.value, dueDateInput.value)"
+          (click)="addTask(titleInput.value, descInput.value, priorityInput.value, dueDateInput.value)">
+          Add Task
+        </button>
+<button 
+  class="cancel-task-btn" 
+  type="button" 
+  (click)="goBack()">
+  Cancel
+</button>    
+    </div>
+  </div>
+</div>
